@@ -10,31 +10,29 @@ interface TransfersInputProps {
     checked: boolean
 }
 
-function isAllChecked(filters: TransferFilter[]) {
+function isAllTransfersChecked(filters: TransferFilter[]) {
     const filter = filters.find(f => f.transfer === TransferOptionTitles.allTransfers);
     if (filter) return filter.checked;
 }
 
 function areAllBoxesChecked(filters: TransferFilter[]) {
     const checkedBoxes = filters.filter(f => f.checked);
-    if (checkedBoxes) return checkedBoxes.length >= 3;
+    if (checkedBoxes) return checkedBoxes.length >= filters.length - 2;
 }
 
 const TransfersInput: FC<TransfersInputProps> = ({transfer, description, checked: isChecked}) => {
-    const { chooseTransfer, uncheckTransfer, chooseAllTransfers, uncheckAllTransfers } = useActions();
+    const { chooseTransfer, uncheckTransfer } = useActions();
     const { checkedTransfersFilter } = UseTypedSelector(state => state.filtersReducer)
     const [checked, setChecked] = useState(isChecked);
 
     const handleChangeChecked = () => {
-        if (!checked && transfer === TransferOptionTitles.allTransfers) return chooseAllTransfers();
-        if (checked && transfer === TransferOptionTitles.allTransfers) return uncheckAllTransfers();
         if (checked) {
-            if (isAllChecked(checkedTransfersFilter)) uncheckTransfer(TransferOptionTitles.allTransfers)
+            if (isAllTransfersChecked(checkedTransfersFilter)) uncheckTransfer(TransferOptionTitles.allTransfers, true)
             uncheckTransfer(transfer);
         }
         if (!checked) {
-            chooseTransfer(transfer);
             if (areAllBoxesChecked(checkedTransfersFilter)) chooseTransfer(TransferOptionTitles.allTransfers)
+            chooseTransfer(transfer);
         }
         setChecked(!checked)
     }
