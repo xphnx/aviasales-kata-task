@@ -1,0 +1,44 @@
+@import '../../vars.scss';
+
+input[type='radio']:checked + .label {
+    background-color: $primary-color;
+    color: #fff;
+    font-weight: 400;
+}
+
+.label:first-of-type,
+input[type='radio']:checked + .label:first-of-type {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.label:last-child,
+input[type='radio']:checked + .label:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.label {
+    padding: 15px 10px;
+    flex-grow: 1;
+    text-align: center;
+    cursor: pointer;
+    &:hover {
+        background-color: #f1fcff;
+    }
+}
+
+@media (min-width: 750px) {
+    .label:first-of-type,
+    input[type='radio']:checked + .label:first-of-type {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 5px;
+    }
+    .label:last-child,
+    input[type='radio']:checked + .label:last-child {
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 0px;
+        border-top-right-radius: 5px;
+    }
+}

@@ -1,0 +1,54 @@
+@import '_vars.scss';
+@import './fonts/fonts.scss';
+
+html {
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 600;
+  user-select: none;
+}
+
+body {
+  background: $background-color;
+  color: $main-font-color;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+img {
+  height: auto;
+  width: 100%;
+}
+
+ul {
+  margin: 0 -20px;
+  padding: 0;
+  list-style: none;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  visibility: hidden;
+}
+
+input[type='checkbox'] {
+  margin-right: 10px;
+}
+
+input[type='radio'] {
+  position: absolute;
+}
+
+.container {
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 0 10px;
+}

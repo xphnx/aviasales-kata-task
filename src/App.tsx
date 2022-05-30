@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styles from './App.module.scss';
+
+import TransfersFilter from './components/TransfersFilter/TransfersFilter';
+import QualitiesFilter from './components/QualitiesFilter/QualitiesFilter';
+import Ticket from './components/Ticket/Ticket';
+import ButtonShowMore from './components/ButtonShowMore/ButtonShowMore';
+
+import logo from './img/logo.png';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <React.Fragment>
+    <header className={styles.header}>
+      <div className={styles.logo}>
+        <img src={logo} width="60" height="60" alt="logo" />
+      </div>
+    </header>
+    <main>
+      <section className={styles.filters}>
+        <div className="container">
+          <TransfersFilter />
+          <QualitiesFilter />
+        </div>
+      </section>
+      <section>
+        <div className="container">
+          <Ticket />
+          <ButtonShowMore />
+        </div>
+      </section>
+    </main>
+    </React.Fragment>
+  )
 }
 
 export default App;
