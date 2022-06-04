@@ -23,7 +23,7 @@ const QualitiesInput: FC<QualitiesInputProps> = ({ quality, description }) => {
       <label
         htmlFor={`themost-${quality}`}
         className={`${styles.label} ${styles[`label-${quality}`]}`}
-        onKeyPress={handleChangeChecked}
+        onClick={handleChangeChecked}
         role="presentation"
       >
         {description}
