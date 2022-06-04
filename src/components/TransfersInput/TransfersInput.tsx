@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { useActions } from '../../hooks/useActions';
 import { UseTypedSelector } from '../../hooks/UseTypedSelector';
 import {
@@ -26,12 +26,12 @@ const TransfersInput: FC<TransfersInputProps> = ({
     uncheckAllCheckboxAndClicked,
   } = useActions();
   const { filters } = UseTypedSelector(
-    state => state.filtersReducer.transfersFilter
+    (state) => state.filtersReducer.transfersFilter
   );
   const [checked, setChecked] = useState(isChecked);
 
-  const handleChangeChecked = () => {
-    if (checked)
+  const handleChangeChecked = (): void => {
+    if (checked) {
       chooseActionToUncheck(
         uncheckAllTransfers,
         uncheckAllCheckboxAndClicked,
@@ -39,13 +39,15 @@ const TransfersInput: FC<TransfersInputProps> = ({
         transfer,
         filters
       );
-    if (!checked)
+    }
+    if (!checked) {
       chooseActionToCheck(
         chooseAllTransfers,
         chooseTransfer,
         transfer,
         filters
       );
+    }
     setChecked(!checked);
   };
 

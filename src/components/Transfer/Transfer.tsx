@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import {
   calculateEndOfTransfer,
   formatDurationToReadableTime,
@@ -21,7 +21,7 @@ const Transfer: FC<Segment> = ({
     <div className={styles.race}>
       <div className={styles.info}>
         <div className={styles.title}>
-          {origin} – {destination}
+          {origin} –{destination}
         </div>
         <div className={styles.content}>
           {format(new Date(date), 'HH:mm')} –{' '}

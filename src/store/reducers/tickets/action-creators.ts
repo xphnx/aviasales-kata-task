@@ -1,12 +1,12 @@
+import { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
+import { v4 as uuidv4 } from 'uuid';
 import {
   Ticket,
   TicketActions,
   TicketActionTypes,
   TicketWithId,
 } from './types';
-import { ThunkAction, ThunkDispatch } from 'redux-thunk';
-import { AnyAction } from 'redux';
-import { v4 as uuidv4 } from 'uuid';
 
 export const TicketActionCreators = {
   setIsLoading: (payload: boolean): TicketActions => ({
@@ -30,16 +30,27 @@ export const TicketActionCreators = {
     payload,
   }),
   initializeSearch:
-    (): ThunkAction<void, {}, {}, AnyAction> =>
-    async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+    (): ThunkAction<
+      void,
+      Record<string, unknown>,
+      Record<string, unknown>,
+      AnyAction
+    > =>
+    async (
+      dispatch: ThunkDispatch<
+        Record<string, unknown>,
+        Record<string, unknown>,
+        AnyAction
+      >
+    ) => {
       try {
         fetch('https://aviasales-test-api.kata.academy/search')
-          .then(data => data.json())
+          .then((data) => data.json())
           .then(({ searchId }) => {
             dispatch(TicketActionCreators.getSearchId(searchId));
             return searchId;
           })
-          .then(searchId => {
+          .then((searchId) => {
             dispatch(TicketActionCreators.setIsLoading(true));
             dispatch(TicketActionCreators.fetchTickets(searchId));
           });
@@ -48,13 +59,26 @@ export const TicketActionCreators = {
       }
     },
   fetchTickets:
-    (searchId: string): ThunkAction<void, {}, {}, AnyAction> =>
-    async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+    (
+      searchId: string
+    ): ThunkAction<
+      void,
+      Record<string, unknown>,
+      Record<string, unknown>,
+      AnyAction
+    > =>
+    async (
+      dispatch: ThunkDispatch<
+        Record<string, unknown>,
+        Record<string, unknown>,
+        AnyAction
+      >
+    ) => {
       try {
         fetch(
           `https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`
         )
-          .then(response => {
+          .then((response) => {
             if (!response.ok) {
               throw response;
             }
@@ -72,7 +96,7 @@ export const TicketActionCreators = {
             if (!stop) dispatch(TicketActionCreators.fetchTickets(searchId));
             if (stop) dispatch(TicketActionCreators.setIsLoading(false));
           })
-          .catch(e => {
+          .catch((e) => {
             if (e.status === 500) {
               dispatch(TicketActionCreators.fetchTickets(searchId));
             } else {

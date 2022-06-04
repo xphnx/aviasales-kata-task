@@ -4,9 +4,8 @@ export const toggleTransfer = (
   transfers: TransferFilter[],
   names: string[],
   checked: boolean
-): TransferFilter[] => {
-  return transfers.map(t => {
+): TransferFilter[] =>
+  transfers.map((t) => {
     if (names.includes(t.transfer)) return { ...t, checked };
     return t;
   });
-};

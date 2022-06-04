@@ -1,5 +1,5 @@
 export interface Ticket {
-  price: Number;
+  price: number;
   carrier: string;
   segments: [
     {

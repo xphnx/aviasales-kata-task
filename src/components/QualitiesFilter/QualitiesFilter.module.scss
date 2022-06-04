@@ -1,18 +1,18 @@
 .qualities-filter {
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    font-size: 12px;
-    line-height: 12px;
-    letter-spacing: 0.5px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 0.5px;
 }
 
 @media (min-width: 750px) {
-    .qualities-filter {
-        flex-direction: row;
-        width: calc(100% - 260px);
-        margin-left: auto;
-    }
+  .qualities-filter {
+    flex-direction: row;
+    width: calc(100% - 260px);
+    margin-left: auto;
+  }
 }

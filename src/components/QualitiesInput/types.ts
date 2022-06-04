@@ -1,4 +1,4 @@
 export interface QualitiesInputProps {
-    quality: string
-    description: string
+  quality: string;
+  description: string;
 }

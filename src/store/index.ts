@@ -1,8 +1,8 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
-import { filtersReducer } from './reducers/filters';
-import { ticketsReducer } from './reducers/tickets';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
+import { filtersReducer } from './reducers/filters';
+import { ticketsReducer } from './reducers/tickets';
 
 const reducers = combineReducers({
   filtersReducer,

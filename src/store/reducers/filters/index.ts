@@ -73,7 +73,7 @@ export const filtersReducer = (
         ...state,
         transfersFilter: {
           activeFilters: [TransferOptionTitles.allTransfers],
-          filters: [...filters.map(t => ({ ...t, checked: true }))],
+          filters: [...filters.map((t) => ({ ...t, checked: true }))],
         },
       };
     case FilterActionsTypes.uncheckAllTransfers:
@@ -81,7 +81,7 @@ export const filtersReducer = (
         ...state,
         transfersFilter: {
           activeFilters: [],
-          filters: [...filters.map(t => ({ ...t, checked: false }))],
+          filters: [...filters.map((t) => ({ ...t, checked: false }))],
         },
       };
     case FilterActionsTypes.uncheckAllCheckboxAndClicked: {

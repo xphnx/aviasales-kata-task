@@ -1,13 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { format, intervalToDuration } from 'date-fns';
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
-export function formatNumberWithSpaces(number: string) {
-  let [_, num, suffix] = number.match(/^(.*?)((?:[,.]\d+)?|)$/)!;
+export function formatNumberWithSpaces(number: string): string {
+  const [_, num, suffix] = number.match(/^(.*?)((?:[,.]\d+)?|)$/) ?? [];
   return `${num.replace(/\B(?=(?:\d{3})*$)/g, ' ')}${suffix}`;
 }
 
-export function formatEndOfWords(number: number, txt: string[]) {
-  var cases = [2, 0, 1, 1, 1, 2];
+export function formatEndOfWords(number: number, txt: string[]): string {
+  const cases = [2, 0, 1, 1, 1, 2];
   return txt[
     number % 100 > 4 && number % 100 < 20
       ? 2
@@ -15,11 +15,14 @@ export function formatEndOfWords(number: number, txt: string[]) {
   ];
 }
 
-export function calculateEndOfTransfer(date: string, duration: number) {
+export function calculateEndOfTransfer(date: string, duration: number): string {
   return format(new Date(new Date(date).getTime() + duration * 60000), 'HH:mm');
 }
 
-export function formatDurationToReadableTime(date: string, duration: number) {
+export function formatDurationToReadableTime(
+  date: string,
+  duration: number
+): string {
   const dur = intervalToDuration({
     start: new Date(date),
     end: new Date(new Date(date).getTime() + duration * 60000),

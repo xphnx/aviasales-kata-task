@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, FC } from 'react';
 import styles from './App.module.scss';
 
 import TransfersFilter from './components/TransfersFilter/TransfersFilter';
@@ -8,14 +8,14 @@ import logo from './img/logo.png';
 import { useActions } from './hooks/useActions';
 import TicketList from './components/TicketList/TicketList';
 
-function App() {
+const App: FC = () => {
   const { initializeSearch } = useActions();
   useEffect(() => {
     initializeSearch();
   }, [initializeSearch]);
 
   return (
-    <React.Fragment>
+    <>
       <header className={styles.header}>
         <div className={styles.logo}>
           <img src={logo} width="60" height="60" alt="logo" />
@@ -34,8 +34,8 @@ function App() {
           </div>
         </section>
       </main>
-    </React.Fragment>
+    </>
   );
-}
+};
 
 export default App;

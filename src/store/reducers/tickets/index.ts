@@ -11,7 +11,7 @@ const initalState: TicketState = {
 export const ticketsReducer = (
   state: TicketState = initalState,
   action: TicketActions
-) => {
+): TicketState => {
   switch (action.type) {
     case TicketActionTypes.setIsLoading:
       return { ...state, isLoading: action.payload };

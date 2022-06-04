@@ -24,11 +24,11 @@ export const deriveActiveFilterToState = (
   f: TransferFilter[],
   payload: string[],
   checked: boolean
-) => {
+): { activeFilters: string[]; filters: TransferFilter[] } => {
   const filters = [...toggleTransfer(f, payload, checked)];
   const activeFilters = filters
-    .filter(f => f.checked)
-    .map(f => filterNameToActiveLength[f.transfer]);
+    .filter((filter) => filter.checked)
+    .map((filter) => filterNameToActiveLength[filter.transfer]);
 
   return {
     activeFilters,
@@ -42,7 +42,7 @@ export const chooseActionToUncheck = (
   uncheckTransfer: uncheckTransferType,
   transfer: string,
   filters: TransferFilter[]
-) => {
+): void => {
   if (
     isAllTransfersChecked(filters) &&
     transfer === TransferOptionTitles.allTransfers
@@ -63,7 +63,7 @@ export const chooseActionToCheck = (
   chooseTransfer: chooseTransferType,
   transfer: string,
   filters: TransferFilter[]
-) => {
+): void => {
   if (
     transfer === TransferOptionTitles.allTransfers ||
     areAllBoxesChecked(filters)
