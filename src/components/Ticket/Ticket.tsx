@@ -1,53 +1,46 @@
 import styles from './Ticket.module.scss';
+import { formatNumberWithSpaces } from '../../utils/formatHelpers';
+import { FC } from 'react';
+import Transfer from '../Transfer/Transfer';
 
-import S7logo from '../../img/S7-Logo.png';
-
-const Ticket = () => {
-    return (
-      <div className={styles.ticket}>
-        <header className={styles.header}>
-          <div className={styles.price}>13 400 Р</div>
-          <div className={styles.logo}>
-            <img
-              src={S7logo}
-              width="110"
-              height="36"
-              alt="Airline Logo"
-            />
-          </div>
-        </header>
-        <div className={styles.body}>
-          <div className={styles.race}>
-            <div className={styles.info}>
-              <div className={styles.title}>MOW – HKT</div>
-              <div className={styles.content}>10:45 – 08:00</div>
-            </div>
-            <div className={styles.info}>
-              <div className={styles.title}>В пути</div>
-              <div className={styles.content}>21ч 15м</div>
-            </div>
-            <div className={styles.info}>
-              <div className={styles.title}>2 пересадки</div>
-              <div className={styles.content}>HKG, JNB</div>
-            </div>
-          </div>
-          <div className={styles.race}>
-            <div className={styles.info}>
-              <div className={styles.title}>MOW – HKT</div>
-              <div className={styles.content}>11:20 – 00:50</div>
-            </div>
-            <div className={styles.info}>
-              <div className={styles.title}>В пути</div>
-              <div className={styles.content}>13ч 30м</div>
-            </div>
-            <div className={styles.info}>
-              <div className={styles.title}>1 пересадка</div>
-              <div className={styles.content}>HKG</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
+export interface Segment {
+  origin: string;
+  destination: string;
+  date: string;
+  stops: string[];
+  duration: number;
 }
+
+interface TicketProps {
+  price: Number;
+  carrier: string;
+  id: string;
+  segments: Segment[];
+}
+
+const Ticket: FC<TicketProps> = ({ price, carrier, segments }) => {
+  return (
+    <div className={styles.ticket}>
+      <header className={styles.header}>
+        <div className={styles.price}>
+          {formatNumberWithSpaces(price.toString())} Р
+        </div>
+        <div className={styles.logo}>
+          <img
+            src={`https://pics.avs.io/99/36/${carrier}.png`}
+            width="110"
+            height="36"
+            alt="Airline Logo"
+          />
+        </div>
+      </header>
+      <div className={styles.body}>
+        {segments.map(race => (
+          <Transfer key={`${race.date}${race.duration}`} {...race} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default Ticket;
