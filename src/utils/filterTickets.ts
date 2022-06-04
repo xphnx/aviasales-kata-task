@@ -11,6 +11,12 @@ export const sortTickets = (tickets: TicketWithId[] | [], filter: string) => {
         const second = b.segments[0].duration + b.segments[1].duration;
         return first - second;
       });
+    case 'optimal':
+      return tickets.sort((a, b) => {
+        const first = a.segments[0].duration + a.segments[1].duration + +a.price;
+        const second = b.segments[0].duration + b.segments[1].duration + +b.price;
+        return first - second;
+      });
     default:
       return tickets;
   }
