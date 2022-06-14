@@ -34,8 +34,9 @@ export const filterTickets = (
   if (!activeFilters.length) return [];
   if (activeFilters.includes(TransferOptionTitles.allTransfers)) return tickets;
   return tickets.filter((ticket) => {
-    const sumStops =
-      ticket.segments[0].stops.length + ticket.segments[1].stops.length;
-    return activeFilters.includes(sumStops.toString());
+    return (
+      activeFilters.includes(ticket.segments[0].stops.length.toString()) ||
+      activeFilters.includes(ticket.segments[1].stops.length.toString())
+    );
   });
 };
